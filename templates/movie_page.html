@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Top five movie tracks</title>
+</head>
+<body>
+<h2>The top {{ amount }} movie tracks are:</h2>
+  <ul>
+    {% for r in objects %}
+        <li>
+        <h2>Track Name: {{ r['trackName'] }}</h2>
+        <div>See it on iTunes <a href="{{ r['trackViewUrl'] }}">here</a>.</div>
+        <p>The movie is rated {{ r['contentAdvisoryRating'] }}.</p>
+        <p>{% if r['contentAdvisoryRating'] == "R" %}Only watch it if you are at least 21.
+        {% elif r['contentAdvisoryRating'] == "PG-13" : %}Only watch it if you are at least 13.
+        {% else %}Enjoy! {% endif %}</p></li>
+    {% endfor %}
+  </ul>
+</body>
+<a href="{{ url_for('index')}}">Return to the home page</a>
+</html>
